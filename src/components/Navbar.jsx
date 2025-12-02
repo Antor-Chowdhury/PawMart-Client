@@ -80,7 +80,7 @@ const NavBar = () => {
   return (
     <div className="bg-[#edebec]">
       <div className="shadow-sm py-4">
-        <div className="navbar max-w-[90%] mx-auto pb-20 md:pb-0">
+        <div className="navbar max-w-[90%] mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -92,7 +92,7 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-linear-to-r from-[#264839] to-[#8dab7d] rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
+                className="menu menu-sm dropdown-content bg-white rounded-box z-[999] mt-3 w-52 p-2 shadow text-lg"
               >
                 {links}
               </ul>

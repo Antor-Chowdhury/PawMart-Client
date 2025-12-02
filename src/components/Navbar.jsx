@@ -80,7 +80,7 @@ const NavBar = () => {
   return (
     <div className="bg-[#edebec]">
       <div className="shadow-sm py-4">
-        <div className="navbar max-w-11/12 mx-auto pb-20 md:pb-0">
+        <div className="navbar max-w-[90%] mx-auto pb-20 md:pb-0">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -99,7 +99,7 @@ const NavBar = () => {
             </div>
             <Link to="/" className="flex items-center justify-center gap-1">
               <figure className="md:w-8 md:h-8"></figure>
-              <h1 className="md:text-2xl gradient-text font-bold text-black">
+              <h1 className="text-2xl md:text-3xl gradient-text font-bold text-black">
                 🐾 Paw<span className="text-[#ff8c00]">Mart</span>
               </h1>
             </Link>
@@ -110,23 +110,13 @@ const NavBar = () => {
 
           {/* login / logout conditional rendering */}
 
-          <div className="navbar-end flex gap-3">
-            <div>
-              <Link
-                to="/login"
-                className="btn text-lg text-white bg-[#f3714b] border-none shadow-none"
-              >
-                Login
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/register"
-                className="btn text-lg text-white bg-[#f3714b] border-none shadow-none"
-              >
-                Register
-              </Link>
-            </div>
+          <div className="navbar-end">
+            <Link
+              to="/login"
+              className="btn md:text-lg text-white bg-[#f3714b] border-none shadow-none"
+            >
+              SIGN IN / REGISTER
+            </Link>
           </div>
 
           {/* {user ? (

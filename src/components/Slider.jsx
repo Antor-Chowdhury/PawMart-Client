@@ -28,7 +28,7 @@ const Slider = () => {
   ];
 
   return (
-    <div className="w-full h-[50vh] md:h-[70vh] relative">
+    <div className="kw-full h-[40vh] md:h-[60vh] relative">
       <Swiper
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000 }}
@@ -44,7 +44,7 @@ const Slider = () => {
             />
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-black/25">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-200 mb-3 mt-60 md:mt-80 whitespace-pre-line">
+              <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-gray-200 mb-1 md:mb-2 mt-20 md:mt-70 whitespace-pre-line">
                 {slide.title}
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-gray-100 max-w-2xl">

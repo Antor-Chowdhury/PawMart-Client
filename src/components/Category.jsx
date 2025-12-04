@@ -11,25 +11,25 @@ const categories = [
     id: 1,
     title: "Pets",
     image: petAdoption,
-    route: "/pets",
+    route: "/category-filtered-product/pets",
   },
   {
     id: 2,
     title: "Pet Food",
     image: petFood,
-    route: "/food",
+    route: "/category-filtered-product/petFood",
   },
   {
     id: 3,
     title: "Accessories",
     image: petAccessories,
-    route: "/accessories",
+    route: "/category-filtered-product/accessories",
   },
   {
     id: 4,
     title: "Pet Care Products",
     image: petCare,
-    route: "/care-products",
+    route: "/category-filtered-product/petCareProducts",
   },
 ];
 
@@ -37,9 +37,12 @@ const Category = () => {
   return (
     <div className="bg-[#fff7f4]">
       <div className="max-w-[90%] md:max-w-[80%] mx-auto py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-700">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-700 mb-2">
           Browse by Category
         </h2>
+        <p className="text-center mb-10">
+          Find everything your pet needs in one place
+        </p>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((category) => (

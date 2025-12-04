@@ -6,6 +6,10 @@ import CategoryFilteredProduct from "../components/CategoryFilteredProduct";
 import AddListing from "../pages/AddListing";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
+import PetSupplies from "../pages/PetSupplies";
+import MyListing from "../pages/MyListing";
+import MyOrders from "../pages/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +26,32 @@ const router = createBrowserRouter([
         element: <CategoryFilteredProduct></CategoryFilteredProduct>,
       },
       {
+        path: "/pets-supplies",
+        element: <PetSupplies></PetSupplies>,
+      },
+      {
         path: "/add-listing",
-        element: <AddListing></AddListing>,
+        element: (
+          <PrivateRoute>
+            <AddListing></AddListing>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-listing",
+        element: (
+          <PrivateRoute>
+            <MyListing></MyListing>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

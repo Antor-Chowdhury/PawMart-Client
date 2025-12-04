@@ -18,7 +18,7 @@ const NavBar = () => {
       });
   };
 
-  const links = (
+  const links = user ? (
     <>
       <NavLink to="/">
         {({ isActive }) => (
@@ -72,6 +72,31 @@ const NavBar = () => {
             }`}
           >
             My Orders
+          </span>
+        )}
+      </NavLink>
+    </>
+  ) : (
+    <>
+      <NavLink to="/">
+        {({ isActive }) => (
+          <span
+            className={`nav-link font-medium border-[#ff8600] hover:border-b-2  hover:${
+              isActive ? " active border-b-2" : " "
+            }`}
+          >
+            Home
+          </span>
+        )}
+      </NavLink>
+      <NavLink to="/pets-supplies">
+        {({ isActive }) => (
+          <span
+            className={`nav-link font-medium border-[#ff8600] hover:border-b-2  hover:${
+              isActive ? " active border-b-2" : " "
+            }`}
+          >
+            Pets & Supplies
           </span>
         )}
       </NavLink>

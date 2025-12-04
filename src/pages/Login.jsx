@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const location = useLocation();
-  // console.log(location);
+  //   console.log(location);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -25,7 +25,7 @@ const Login = () => {
         const user = userCredential.user;
 
         setUser(user);
-        navigate(location.state);
+        navigate(location.state || "/");
         toast.success("Login successful!");
 
         // clear the form

@@ -1,12 +1,26 @@
 import React from "react";
 
 const AddListing = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const name = form.name.value;
+    const category = form.category.value;
+    const price = form.price.value;
+    const location = form.location.value;
+    const description = form.location.value;
+    const image = form.image.value;
+    const date = form.date.value;
+    const email = form.email.value;
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Add Product/Pet
       </h2>
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name */}
         <div>
           <label className="block mb-1 font-medium">Product/Pet Name</label>

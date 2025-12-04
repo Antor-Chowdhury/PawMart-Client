@@ -4,6 +4,8 @@ import Error from "../pages/Error";
 import Home from "../pages/Home";
 import CategoryFilteredProduct from "../components/CategoryFilteredProduct";
 import AddListing from "../pages/AddListing";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/add-listing",
         element: <AddListing></AddListing>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signup",
+        element: <Register></Register>,
       },
     ],
   },

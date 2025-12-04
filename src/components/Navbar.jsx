@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
-// import { AuthContext } from "../Provider/AuthProvider";
-// import { signOut } from "firebase/auth";
-// import auth from "../firebase/firebase.config";
+import { AuthContext } from "../Provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import auth from "../firebase/firebase.config";
 import { toast } from "react-toastify";
 const NavBar = () => {
-  //   const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -110,16 +110,7 @@ const NavBar = () => {
 
           {/* login / logout conditional rendering */}
 
-          <div className="navbar-end">
-            <Link
-              to="/login"
-              className="btn md:text-lg text-white bg-[#f3714b] border-none shadow-none"
-            >
-              SIGN IN / REGISTER
-            </Link>
-          </div>
-
-          {/* {user ? (
+          {user ? (
             <div className="navbar-end flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
                 <img
@@ -131,7 +122,7 @@ const NavBar = () => {
 
               <button
                 onClick={handleSignOut}
-                className="btn text-white bg-[#d5b60a] border-none shadow-none px-4 py-2"
+                className="btn md:text-lg text-white bg-[#f3714b] border-none shadow-none"
               >
                 Logout
               </button>
@@ -140,12 +131,12 @@ const NavBar = () => {
             <div className="navbar-end">
               <Link
                 to="/login"
-                className="btn text-lg text-white bg-[#d5b60a] border-none shadow-none"
+                className="btn md:text-lg text-white bg-[#f3714b] border-none shadow-none"
               >
-                Login
+                SIGN IN / REGISTER
               </Link>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>

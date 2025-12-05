@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import axios from "axios";
 
 const AddListing = () => {
+  const { user } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
 
     const name = form.name.value;
     const category = form.category.value;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const location = form.location.value;
-    const description = form.location.value;
+    const description = form.description.value;
     const image = form.image.value;
     const date = form.date.value;
     const email = form.email.value;
+
+    const formData = {
+      name,
+      category,
+      price,
+      location,
+      description,
+      image,
+      date,
+      email,
+    };
+
+    e.target.reset();
+
+    console.log(formData);
+
+    // sending the data to the Database
+    axios.post("http://localhost:3000/listings", formData).then((res) => {
+      console.log(res); // will receive the backend result here
+    });
   };
 
   return (
@@ -54,7 +78,7 @@ const AddListing = () => {
           <input
             type="number"
             name="price"
-            className={`w-full border border-gray-300 rounded py-2`}
+            className={`w-full border border-gray-300 rounded p-2`}
             min="0"
             required
           />
@@ -108,6 +132,7 @@ const AddListing = () => {
         <div>
           <label className="block mb-1 font-medium">Email</label>
           <input
+            value={user?.email}
             type="email"
             name="email"
             readOnly

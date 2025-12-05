@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../components/Navbar";
 import Slider from "../components/Slider";
 import Category from "../components/Category";
+import RecentListing from "../components/RecentListing";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
 
       <Slider></Slider>
       <Category></Category>
+      <RecentListing></RecentListing>
     </div>
   );
 };

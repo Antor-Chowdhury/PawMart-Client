@@ -9,7 +9,7 @@ import axios from "axios";
 const PetSuppliesDetails = () => {
   const { loading, setLoading } = useContext(AuthContext);
   const { id } = useParams();
-  const [petSupplyDetail, setPetSupplyDetail] = useState({});
+  const [petSupplyDetail, setPetSupplyDetail] = useState([]);
   const [modal, setModal] = useState(false);
 
   //   console.log(id);

@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import PetSupplies from "../pages/PetSupplies";
 import MyListing from "../pages/MyListing";
 import MyOrders from "../pages/MyOrders";
+import PetSuppliesDetails from "../pages/PetSuppliesDetails";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             <MyOrders></MyOrders>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/details/:id",
+        element: <PetSuppliesDetails></PetSuppliesDetails>,
       },
       {
         path: "/login",

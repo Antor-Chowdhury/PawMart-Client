@@ -60,12 +60,14 @@ const PetSupplies = () => {
                 <p className="font-medium">Category: {item.category}</p>
                 <p className="font-medium">Location: {item.location}</p>
                 <p className="font-medium">
-                  Price: {item.price === 0 ? "0" : `$${item.price}`}
+                  Price: {item.price === 0 ? "0" : `${item.price}`}
                 </p>
 
                 <div className="card-actions">
                   <Link to={`/details/${item._id}`}>
-                    <button className="btn btn-primary">See Details</button>
+                    <button className="btn bg-[#f3714b] text-white">
+                      See Details
+                    </button>
                   </Link>
                 </div>
               </div>

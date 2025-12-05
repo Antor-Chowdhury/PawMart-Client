@@ -18,7 +18,7 @@ const Footer = () => {
     </>
   );
   return (
-    <div className="flex flex-col items-center justify-center bg-[#ede9e6] text-gray-500 pt-20 pb-10 text-center px-2.5">
+    <div className="flex flex-col items-center justify-center bg-[#ede9e6] text-gray-500 pt-20 pb-10 text-center px-2.5 mt-20">
       <Link to="/" className="flex items-center gap-1">
         <h1 className="text-xl md:text-2xl gradient-text font-bold text-black">
           🐾 Paw<span className="text-[#ff8c00]">Mart</span>

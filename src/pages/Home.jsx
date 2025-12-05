@@ -4,6 +4,7 @@ import Slider from "../components/Slider";
 import Category from "../components/Category";
 import RecentListing from "../components/RecentListing";
 import WhyAdoptFromPawMart from "../components/WhyAdoptFromPawMart";
+import MeetOurHeroes from "../components/MeetOurHeroes";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Category></Category>
       <RecentListing></RecentListing>
       <WhyAdoptFromPawMart></WhyAdoptFromPawMart>
+      <MeetOurHeroes></MeetOurHeroes>
     </div>
   );
 };

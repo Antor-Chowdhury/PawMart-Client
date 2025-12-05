@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const RecentListing = () => {
   const [recentListing, setRecentListing] = useState([]);
@@ -23,14 +24,21 @@ const RecentListing = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[90%] mx-auto">
           {recentListing.map((item) => (
-            <div
+            <motion.div
               key={item._id}
               className="card bg-white shadow-md p-2 md:p-4 rounded-lg"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+              }}
+              whileHover={{ scale: 1.05 }}
             >
               <figure className="mb-4">
                 <img
                   src={item.image}
                   alt={item.name}
+                  loading="lazy"
                   className="w-full h-48 object-cover rounded-lg"
                 />
               </figure>
@@ -42,13 +50,14 @@ const RecentListing = () => {
                   {item.price === 0 ? "Free for Adoption" : `${item.price}`}
                 </p>
                 <p className="text-gray-600">Location: {item.location}</p>
+
                 <Link to={`/details/${item._id}`}>
                   <button className="btn bg-orange-500 text-white mt-3">
                     See Details
                   </button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

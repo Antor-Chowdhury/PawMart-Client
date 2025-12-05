@@ -3,6 +3,7 @@ import NavBar from "../components/Navbar";
 import Slider from "../components/Slider";
 import Category from "../components/Category";
 import RecentListing from "../components/RecentListing";
+import WhyAdoptFromPawMart from "../components/WhyAdoptFromPawMart";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Slider></Slider>
       <Category></Category>
       <RecentListing></RecentListing>
+      <WhyAdoptFromPawMart></WhyAdoptFromPawMart>
     </div>
   );
 };

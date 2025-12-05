@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddListing = () => {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,8 @@ const AddListing = () => {
     axios.post("http://localhost:3000/listings", formData).then((res) => {
       console.log(res); // will receive the backend result here
     });
+
+    toast.success("Item has been added successfully!");
   };
 
   return (

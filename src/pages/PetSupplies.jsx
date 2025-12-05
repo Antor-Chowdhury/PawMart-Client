@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../components/Loading";
+import axios from "axios";
 
 const PetSupplies = () => {
   const { loading, setLoading } = useContext(AuthContext);
@@ -10,10 +11,10 @@ const PetSupplies = () => {
   const [petSupplies, setPetSupplies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/listings")
-      .then((res) => res.json())
-      .then((data) => {
-        setPetSupplies(data);
+    axios
+      .get("http://localhost:3000/listings")
+      .then((res) => {
+        setPetSupplies(res.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));

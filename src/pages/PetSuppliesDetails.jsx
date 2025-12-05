@@ -4,20 +4,21 @@ import Loading from "../components/Loading";
 import { AuthContext } from "../Provider/AuthProvider";
 import { TiShoppingCart } from "react-icons/ti";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const PetSuppliesDetails = () => {
   const { loading, setLoading } = useContext(AuthContext);
   const { id } = useParams();
-  const [petSupplyDetail, setPetSupplyDetail] = useState([]);
+  const [petSupplyDetail, setPetSupplyDetail] = useState({});
   const [modal, setModal] = useState(false);
 
   //   console.log(id);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/listings/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPetSupplyDetail(data);
+    axios
+      .get(`http://localhost:3000/listings/${id}`)
+      .then((res) => {
+        setPetSupplyDetail(res.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -120,7 +121,7 @@ const PetSuppliesDetails = () => {
                     <div className="modal-action">
                       <button
                         type="submit"
-                        className="btn btn-primary"
+                        className="btn bg-[#f3714b] text-white"
                         onClick={(e) => {
                           e.preventDefault();
                           toast.success("Order Submitted!");

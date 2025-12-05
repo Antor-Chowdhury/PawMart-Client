@@ -17,7 +17,7 @@ const categories = [
     id: 2,
     title: "Pet Food",
     image: petFood,
-    route: "/category-filtered-product/petFood",
+    route: "/category-filtered-product/food",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const categories = [
     id: 4,
     title: "Pet Care Products",
     image: petCare,
-    route: "/category-filtered-product/petCareProducts",
+    route: "/category-filtered-product/care Products",
   },
 ];
 

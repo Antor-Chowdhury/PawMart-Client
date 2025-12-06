@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Loading from "../components/Loading";
 
@@ -9,6 +9,8 @@ const UpdateListing = () => {
   const { id } = useParams();
   const [list, setList] = useState([]);
   const [category, setCategory] = useState(list?.category);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -53,7 +55,10 @@ const UpdateListing = () => {
 
     axios
       .put(`http://localhost:3000/update/${id}`, formData)
-      .then((res) => res.data)
+      .then((res) => {
+        res.data;
+        navigate("/my-listing");
+      })
       .catch((err) => console.log(err));
   };
 

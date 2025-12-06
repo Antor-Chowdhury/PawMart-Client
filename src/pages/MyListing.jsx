@@ -20,6 +20,17 @@ const MyListing = () => {
 
   // console.log(myListings);
 
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:3000/delete/${id}`)
+      .then((res) => {
+        res.data;
+        const filterData = myListings.filter((list) => list._id != id);
+        setMyListings(filterData);
+      })
+      .catch((err) => console.log(err));
+  };
+
   if (loading) {
     return <Loading></Loading>;
   }
@@ -39,7 +50,7 @@ const MyListing = () => {
           <tbody>
             {/* row 1 */}
             {myListings?.map((item) => (
-              <tr>
+              <tr key={item._id}>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -58,7 +69,12 @@ const MyListing = () => {
                 <td>{item?.price}</td>
                 <td>
                   <div className="flex items-center gap-3">
-                    <button className="btn btn-error btn-xs">Delete</button>
+                    <button
+                      onClick={() => handleDelete(item?._id)}
+                      className="btn btn-error btn-xs"
+                    >
+                      Delete
+                    </button>
                     <Link to={`/update-listings/${item?._id}`}>
                       <button className="btn btn-primary btn-xs">Update</button>
                     </Link>
@@ -85,7 +101,12 @@ const MyListing = () => {
             <p className="mt-2 font-semibold">Price: {item.price}</p>
 
             <div className="flex gap-3 mt-4">
-              <button className="btn btn-error btn-sm flex-1">Delete</button>
+              <button
+                onClick={() => handleDelete(item?._id)}
+                className="btn btn-error btn-sm flex-1"
+              >
+                Delete
+              </button>
               <Link className="flex-1" to={`/update-listings/${item?._id}`}>
                 <button className="btn btn-primary btn-sm w-full">
                   Update

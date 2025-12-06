@@ -1,28 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import { AuthContext } from "../Provider/AuthProvider";
-import Loading from "../components/Loading";
-import axios from "axios";
 
 const PetSupplies = () => {
-  const { loading, setLoading } = useContext(AuthContext);
-
   const [petSupplies, setPetSupplies] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/listings")
-      .then((res) => {
-        setPetSupplies(res.data);
-        setLoading(false);
-      })
+    fetch("http://localhost:3000/listings")
+      .then((res) => res.json())
+      .then((data) => setPetSupplies(data))
       .catch((err) => console.log(err));
-  }, [setLoading]);
+  }, []);
 
-  if (loading) {
-    return <Loading></Loading>;
-  }
+  const filteredData = petSupplies.filter((item) => {
+    const matchedCategory = category === "All" || item.category === category;
+    const matchedSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    return matchedCategory && matchedSearch;
+  });
 
   return (
     <div className="bg-[#fff7f4] py-10">
@@ -35,8 +33,31 @@ const PetSupplies = () => {
           All Available Pets & Supplies
         </h2>
 
+        <div className="flex flex-col md:flex-row justify-between mb-6 gap-4">
+          <input
+            type="text"
+            placeholder="Search by name..."
+            className="input input-bordered w-full md:w-1/2"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <select
+            className="select select-bordered w-full md:w-1/3"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="All">All Categories</option>
+            <option value="Pets">Pets</option>
+            <option value="Food">Food</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Care Products">Care Products</option>
+          </select>
+        </div>
+
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {petSupplies.map((item) => (
+          {filteredData.map((item) => (
             <motion.div
               key={item._id}
               className="card bg-base-100 w-full shadow-md"
@@ -61,12 +82,12 @@ const PetSupplies = () => {
                 <p className="font-medium">Category: {item.category}</p>
                 <p className="font-medium">Location: {item.location}</p>
                 <p className="font-medium">
-                  Price: {item.price === 0 ? "0" : `${item.price}`}
+                  Price: {item.price === 0 ? "0" : `$${item.price}`}
                 </p>
 
                 <div className="card-actions">
                   <Link to={`/details/${item._id}`}>
-                    <button className="btn bg-[#f3714b] text-white">
+                    <button className="btn bg-orange-500 text-white">
                       See Details
                     </button>
                   </Link>

@@ -8,7 +8,7 @@ const PetSupplies = () => {
   const [category, setCategory] = useState("All");
 
   useEffect(() => {
-    fetch("http://localhost:3000/listings")
+    fetch("https://paw-mart-six.vercel.app/listings")
       .then((res) => res.json())
       .then((data) => setPetSupplies(data))
       .catch((err) => console.log(err));

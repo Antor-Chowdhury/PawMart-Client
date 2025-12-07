@@ -8,7 +8,7 @@ const RecentListing = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/recent-listings")
+      .get("https://paw-mart-six.vercel.app/recent-listings")
       .then((res) => setRecentListing(res.data))
       .catch((err) => console.log(err));
   }, []);

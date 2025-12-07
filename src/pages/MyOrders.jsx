@@ -11,7 +11,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/orders?email=${user.email}`)
+      .get(`https://paw-mart-six.vercel.app/orders?email=${user.email}`)
       .then((res) => {
         setMyOrders(res.data);
         setLoading(false);

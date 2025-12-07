@@ -16,7 +16,7 @@ const PetSuppliesDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/listings/${id}`)
+      .get(`https://paw-mart-six.vercel.app/listings/${id}`)
       .then((res) => {
         setPetSupplyDetail(res.data);
         setLoading(false);
@@ -55,7 +55,7 @@ const PetSuppliesDetails = () => {
     // console.log(formData);
 
     axios
-      .post("http://localhost:3000/orders", formData)
+      .post("https://paw-mart-six.vercel.app/orders", formData)
       .then((res) => {
         toast.success("Order Submitted!");
         setModal(false);

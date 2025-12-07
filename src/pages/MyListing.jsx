@@ -11,7 +11,9 @@ const MyListing = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/my-listings?clientEmail=${user?.email}`)
+      .get(
+        `https://paw-mart-six.vercel.app/my-listings?clientEmail=${user?.email}`
+      )
       .then((res) => {
         setMyListings(res.data);
         setLoading(false);
@@ -33,7 +35,7 @@ const MyListing = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/delete/${id}`)
+          .delete(`https://paw-mart-six.vercel.app/delete/${id}`)
           .then((res) => {
             res.data;
 

@@ -14,7 +14,7 @@ const UpdateListing = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/listings/${id}`)
+      .get(`https://paw-mart-six.vercel.app/listings/${id}`)
       .then((res) => {
         setList(res.data);
         setCategory(res.data.category);
@@ -54,7 +54,7 @@ const UpdateListing = () => {
     console.log(formData);
 
     axios
-      .put(`http://localhost:3000/update/${id}`, formData)
+      .put(`https://paw-mart-six.vercel.app/update/${id}`, formData)
       .then((res) => {
         res.data;
         navigate("/my-listing");

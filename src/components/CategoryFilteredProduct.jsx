@@ -13,7 +13,7 @@ const CategoryFilteredProduct = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/listings`)
+      .get(`https://paw-mart-six.vercel.app/listings`)
       .then((res) => {
         const filteredItem = res.data.filter(
           (item) => item.category.toLowerCase() === categoryName.toLowerCase()

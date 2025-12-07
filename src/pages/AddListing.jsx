@@ -36,23 +36,25 @@ const AddListing = () => {
     console.log(formData);
 
     // sending the data to the Database
-    axios.post("http://localhost:3000/listings", formData).then((res) => {
-      console.log(res); // will receive the backend result here
+    axios
+      .post("https://paw-mart-six.vercel.app/listings", formData)
+      .then((res) => {
+        console.log(res); // will receive the backend result here
 
-      if (res.data.acknowledged) {
-        Swal.fire({
-          title: "Product/pet is created successfully!",
-          icon: "success",
-          draggable: true,
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      }
-    });
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Product/pet is created successfully!",
+            icon: "success",
+            draggable: true,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      });
   };
 
   return (

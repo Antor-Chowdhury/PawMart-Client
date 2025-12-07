@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Loading from "../components/Loading";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyListing = () => {
   const { loading, setLoading, user } = useContext(AuthContext);
@@ -21,14 +22,35 @@ const MyListing = () => {
   // console.log(myListings);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:3000/delete/${id}`)
-      .then((res) => {
-        res.data;
-        const filterData = myListings.filter((list) => list._id != id);
-        setMyListings(filterData);
-      })
-      .catch((err) => console.log(err));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:3000/delete/${id}`)
+          .then((res) => {
+            res.data;
+
+            if (res.data.deletedCount == 1) {
+              const filterData = myListings.filter((list) => list._id != id);
+              setMyListings(filterData);
+
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   };
 
   if (loading) {

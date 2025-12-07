@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddListing = () => {
   const { user } = useContext(AuthContext);
@@ -37,9 +38,21 @@ const AddListing = () => {
     // sending the data to the Database
     axios.post("http://localhost:3000/listings", formData).then((res) => {
       console.log(res); // will receive the backend result here
-    });
 
-    toast.success("Item has been added successfully!");
+      if (res.data.acknowledged) {
+        Swal.fire({
+          title: "Product/pet is created successfully!",
+          icon: "success",
+          draggable: true,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    });
   };
 
   return (

@@ -24,6 +24,45 @@ const PetSuppliesDetails = () => {
       .catch((err) => console.log(err));
   }, [id, setLoading]);
 
+  const handleOrder = (e) => {
+    // e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const productId = form.productId.value;
+    const productName = form.productName.value;
+    const quantity = parseInt(form.quantity.value);
+    const price = parseInt(form.price.value);
+    const address = form.address.value;
+    const date = form.date.value;
+    const additionalNote = form.notes.value;
+    const phone = form.phone.value;
+
+    const formData = {
+      name,
+      email,
+      productId,
+      productName,
+      quantity,
+      price,
+      address,
+      date,
+      phone,
+      additionalNote,
+    };
+
+    // console.log(formData);
+
+    axios
+      .post("http://localhost:3000/orders", formData)
+      .then((res) => {
+        toast.success("Order Submitted!");
+        setModal(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
   if (loading) {
     return <Loading></Loading>;
   }
@@ -35,8 +74,8 @@ const PetSuppliesDetails = () => {
           {/* Image */}
           <figure className="shrink-0">
             <img
-              src={petSupplyDetail.image}
-              alt={petSupplyDetail.name}
+              src={petSupplyDetail?.image}
+              alt={petSupplyDetail?.name}
               className="rounded-xl w-72 md:w-96 object-contain"
             />
           </figure>
@@ -44,30 +83,30 @@ const PetSuppliesDetails = () => {
           {/* Details */}
           <div className="space-y-4 w-full md:w-1/2 text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-orange-500">
-              {petSupplyDetail.name}
+              {petSupplyDetail?.name}
             </h2>
             <p className="text-gray-700 leading-relaxed">
               <span className="font-semibold text-orange-800 text-lg">
                 Description:
               </span>{" "}
-              {petSupplyDetail.description}
+              {petSupplyDetail?.description}
             </p>
 
             <div className="space-y-2 text-lg">
               <p className="font-semibold text-orange-700">
                 Category:{" "}
                 <span className="text-gray-800">
-                  {petSupplyDetail.category}
+                  {petSupplyDetail?.category}
                 </span>
               </p>
               <p className="font-semibold text-orange-700">
                 Owner's Email:{" "}
-                <span className="text-gray-800">{petSupplyDetail.email}</span>
+                <span className="text-gray-800">{petSupplyDetail?.email}</span>
               </p>
               <p className="font-semibold text-orange-700">
                 Price:{" "}
                 <span className="text-gray-800">
-                  {petSupplyDetail.price === 0
+                  {petSupplyDetail?.price === 0
                     ? "0"
                     : `${petSupplyDetail.price}`}
                 </span>
@@ -75,7 +114,7 @@ const PetSuppliesDetails = () => {
               <p className="font-semibold text-orange-700">
                 Location:{" "}
                 <span className="text-gray-800">
-                  {petSupplyDetail.location}
+                  {petSupplyDetail?.location}
                 </span>
               </p>
             </div>
@@ -96,10 +135,11 @@ const PetSuppliesDetails = () => {
                     Adopt / Order {petSupplyDetail.name}
                   </h3>
 
-                  <form className="space-y-4">
-                    {/* Name */}
+                  <form onSubmit={handleOrder} className="space-y-4">
+                    {/* Buyer Name */}
                     <label className="block mb-1 font-medium">Buyer Name</label>
                     <input
+                      name="name"
                       type="text"
                       defaultValue={user?.displayName}
                       readOnly
@@ -111,6 +151,7 @@ const PetSuppliesDetails = () => {
                       Buyer Email
                     </label>
                     <input
+                      name="email"
                       type="email"
                       defaultValue={user?.email}
                       readOnly
@@ -122,8 +163,9 @@ const PetSuppliesDetails = () => {
                       Product/Listing ID
                     </label>
                     <input
+                      name="productId"
                       type="text"
-                      defaultValue={petSupplyDetail._id}
+                      defaultValue={petSupplyDetail?._id}
                       readOnly
                       className="input w-full border rounded-lg bg-gray-100"
                     />
@@ -133,8 +175,9 @@ const PetSuppliesDetails = () => {
                       Product/Pet Name
                     </label>
                     <input
+                      name="productName"
                       type="text"
-                      defaultValue={petSupplyDetail.name}
+                      defaultValue={petSupplyDetail?.name}
                       readOnly
                       className="input w-full border rounded-lg bg-gray-100"
                     />
@@ -142,12 +185,14 @@ const PetSuppliesDetails = () => {
                     {/* Quantity (Pet = 1) */}
                     <label className="block mb-1 font-medium">Quantity</label>
                     <input
+                      required
+                      name="quantity"
                       type="number"
                       defaultValue={
-                        petSupplyDetail.category === "Pets" ? 1 : undefined
+                        petSupplyDetail?.category === "Pets" ? 1 : undefined
                       }
                       min="1"
-                      readOnly={petSupplyDetail.category === "Pets"}
+                      readOnly={petSupplyDetail?.category === "Pets"}
                       placeholder="Quantity"
                       className="input w-full border rounded-lg"
                     />
@@ -155,8 +200,9 @@ const PetSuppliesDetails = () => {
                     {/* Price */}
                     <label className="block mb-1 font-medium">Price</label>
                     <input
+                      name="price"
                       type="text"
-                      defaultValue={petSupplyDetail.price}
+                      defaultValue={petSupplyDetail?.price}
                       readOnly
                       className="input w-full border rounded-lg bg-gray-100"
                     />
@@ -164,15 +210,17 @@ const PetSuppliesDetails = () => {
                     {/* Address */}
                     <label className="block mb-1 font-medium">Address</label>
                     <input
+                      required
+                      name="address"
                       type="text"
                       placeholder="Your Address"
                       className="input w-full border rounded-lg"
-                      required
                     />
 
                     {/* Pick Up Date */}
                     <label className="block mb-1 font-medium">Date</label>
                     <input
+                      name="date"
                       type="date"
                       className="input w-full border rounded-lg"
                       required
@@ -181,10 +229,11 @@ const PetSuppliesDetails = () => {
                     {/* Phone */}
                     <label className="block mb-1 font-medium">Phone</label>
                     <input
+                      required
+                      name="phone"
                       type="text"
                       placeholder="Phone Number"
                       className="input w-full border rounded-lg"
-                      required
                     />
 
                     {/* Additional Notes */}
@@ -192,6 +241,7 @@ const PetSuppliesDetails = () => {
                       Additional Notes
                     </label>
                     <textarea
+                      name="notes"
                       placeholder="Additional Notes (optional)"
                       className="textarea textarea-bordered w-full h-24 rounded-lg"
                     ></textarea>
@@ -200,11 +250,6 @@ const PetSuppliesDetails = () => {
                       <button
                         type="submit"
                         className="btn bg-[#f3714b] text-white"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toast.success("Order Submitted!");
-                          setModal(false);
-                        }}
                       >
                         Submit Order
                       </button>

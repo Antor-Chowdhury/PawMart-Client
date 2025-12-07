@@ -40,7 +40,7 @@ const Category = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-700 mb-2">
           Browse by Category
         </h2>
-        <p className="text-center mb-10">
+        <p className="text-center mb-10 light:text-gray-300">
           Find everything your pet needs in one place
         </p>
 

@@ -58,7 +58,7 @@ const AddListing = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
+    <div className="max-w-md mx-auto p-6 rounded-lg shadow-md mt-10 ">
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Add Product/Pet
       </h2>

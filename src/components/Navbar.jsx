@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { signOut } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { toast } from "react-toastify";
+
 const NavBar = () => {
   const { user } = useContext(AuthContext);
 
@@ -113,10 +114,12 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
   return (
     <div className="bg-[#edebec]">
       <div className="shadow-sm py-4">
         <div className="navbar max-w-[90%] mx-auto">
+          {/* Navbar Start */}
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -140,25 +143,24 @@ const NavBar = () => {
               </h1>
             </Link>
           </div>
+
+          {/* Navbar Center */}
           <div className="navbar-center hidden lg:flex">
             <ul className="space-x-10 menu-horizontal px-1 text-lg">{links}</ul>
           </div>
 
-          {/* login / logout conditional rendering */}
-
-          {/* Dark / light mode toggle */}
-          <div className="navbar-end flex items-center gap-3 relative">
-            {/* Dark / Light Mode Toggle */}
-            <label className="swap swap-rotate absolute right-36 md:right-16 lg:right-42 top-1/2 transform -translate-y-1/2">
+          {/* Navbar End */}
+          <div className="navbar-end flex items-center gap-3">
+            {/* Theme Toggle */}
+            <label className="swap swap-rotate">
               <input
                 onClick={handleThemeChanged}
                 type="checkbox"
                 className="theme-controller"
-                value="synthwave"
               />
               {/* Sun Icon */}
               <svg
-                className="swap-off h-10 w-9 md:w-10 fill-current"
+                className="swap-off h-10 w-10 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -174,7 +176,7 @@ const NavBar = () => {
               </svg>
             </label>
 
-            {/* User Section */}
+            {/* User / Login Section */}
             {user ? (
               <>
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
